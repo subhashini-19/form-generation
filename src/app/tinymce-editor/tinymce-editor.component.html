@@ -1,0 +1,60 @@
+<!-- <h1>TinyMCE 5 Angular Demo</h1>
+ <editor
+   [init]="{
+     height: 500,
+     menubar: false,
+     plugins: [
+       'advlist autolink lists link image charmap print preview anchor',
+       'searchreplace visualblocks code fullscreen',
+       'insertdatetime media table paste code help wordcount'
+     ],
+     toolbar:
+       'undo redo | formatselect | bold italic backcolor | \
+       alignleft aligncenter alignright alignjustify | \
+       bullist numlist outdent indent | removeformat | help'
+   }"
+ ></editor> -->
+
+
+ <div class="tab-pane" id="compose">
+      
+  <div class="container">
+<div class="content-container clearfix">
+    <div class="col-md-12">
+        <div class="form-group">
+            <input id="tokenfield" type="text" class="form-control" placeholder="To" />
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Cc" />
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Bcc" />
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Subject" />
+        </div>
+        <!-- <textarea class="form-control" placeholder="message"></textarea> -->
+        <div [formGroup]="tinymceForm">
+          <editor 
+          formControlName="tinymce" 
+          initialValue="{{ tinymceData }}" 
+          [(ngModel)]="tinymceData" 
+          [init]="data"
+          ></editor>
+
+        </div>
+        <div *ngIf="required && !tinymceForm.valid && tinymceForm.controls['tinymce'].touched" class="validation-error-inline text-danger">
+            {{ requiredError }}
+          </div>
+        <div class="btn-send">
+        <button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-send" (click)=send()></span> Send</button>
+        </div>
+    </div>
+</div>
+</div>
+  
+</div>
+
+
+
+
